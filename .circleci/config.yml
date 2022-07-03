@@ -7,16 +7,13 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo Hello World > output
+      - run: 
+          - echo Hello World > output
+          - pwd
       - persist_to_workspace:
           root: /home/circleci/project
           paths:
             - output
-  pwd: 
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run: pwd
 
   print_output_file:
     docker:
@@ -30,6 +27,5 @@ workflows:
   save-hello-workflow:
     jobs:
       - save_hello_world_output
-      - pwd
       - print_output_file:
           requires: [save_hello_world_output]
