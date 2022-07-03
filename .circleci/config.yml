@@ -22,8 +22,8 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - attach_workplace:
-        at: /home/circleci/project
+      - attach_workspace:
+          at: /home/circleci/project
       - run: cat output       
 
 workflows:
