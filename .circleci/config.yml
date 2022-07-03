@@ -1,11 +1,14 @@
 
 version: 2.1
 
+defaults: &container
+  docker:
+      - image: circleci/node:13.8.0
+
 jobs:
 
   save_hello_world_output:
-    docker:
-      - image: circleci/node:13.8.0
+    <<: *container
     steps:
       - run: |
           echo Hello World > output
