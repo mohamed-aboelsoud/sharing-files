@@ -1,0 +1,18 @@
+version: 2.1
+
+jobs:
+  save_hello_world_output:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: "save hello world output"
+          command: 
+            - echo "Hello world" > output.txt
+            - pwd
+
+workflows:
+  Default:
+    jobs:
+      - save_hello_world_output
