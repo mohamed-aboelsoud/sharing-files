@@ -4,7 +4,14 @@ version: 2.1
 defaults: &container
   docker:
       - image: circleci/node:13.8.0
-
+commands:
+  print_pipeline_id:
+    parameters:
+      to:
+        type: string
+        default: "circle workflow id not found"
+    steps:
+      - run: echo << parameters.to >>
 jobs:
 
   save_hello_world_output:
@@ -24,7 +31,13 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/circleci/project
-      - run: cat output       
+      - run: cat output   
+
+  print_wokflow_ID:
+    <<: *container
+    steps:
+      - print_pipeline_id:
+          to: <<  CIRCLE_WORKFLOW_ID  >> 
 
 workflows:
   save-hello-workflow:
@@ -32,3 +45,4 @@ workflows:
       - save_hello_world_output
       - print_output_file:
           requires: [save_hello_world_output]
+      - print_wokflow_ID
