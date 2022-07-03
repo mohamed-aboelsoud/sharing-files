@@ -7,33 +7,24 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - checkout
-      - run:
-          name: "Print Hello"
-          command: echo Hello World > output
+      - run: echo Hello World > output
       - persist_to_workspace:
-        root: /home/circleci/project
-        paths:
-        - output
+          root: /home/circleci/project
+          paths:
+            - output
   pwd: 
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - checkout
-      - run:
-          name: "print directory"
-          command: pwd
+      - run: pwd
 
   print_output_file:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - checkout
       - attach_workplace:
         at: /home/circleci/project
-      - run:
-          name: "print output"
-          command: cat output       
+      - run: cat output       
 
 workflows:
   save-hello-workflow:
