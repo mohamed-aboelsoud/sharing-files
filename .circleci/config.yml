@@ -10,9 +10,8 @@ jobs:
       - checkout
       - run:
           name: "Print Hello"
-          command: 
-            - echo Hello World > output
-            - pwd
+          command: echo Hello World > output
+           
 
 workflows:
   save-hello-workflow:
