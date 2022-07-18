@@ -1,9 +1,13 @@
 
 version: 2.1
 
-defaults: &container
-  docker:
-      - image: circleci/node:13.8.0
+defaults: 
+  &container:
+    docker:
+        - image: circleci/node:13.8.0
+  &container2:
+    docker:
+        - image: cimg/base:stable
 commands:
   print_pipeline_id:
     parameters:
